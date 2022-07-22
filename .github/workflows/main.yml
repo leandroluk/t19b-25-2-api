@@ -4,13 +4,13 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: install node
+      - name: Install node 14
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: install deps
+      - name: Install dependencies
         run: npm install
-      - name: run eslint
+      - name: Runing ESlint
         run: npx eslint .
