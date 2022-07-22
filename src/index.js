@@ -9,6 +9,7 @@ app.get('*', (req, res) => {
   const encode = 'utf-8';
   const fileContent = readFileSync(file, encode);
   const counter = Number(fileContent || 0) + 1;
+  writeFileSync(file, `${counter}`, encode);
 
   res.json({
     counter,
@@ -19,8 +20,6 @@ app.get('*', (req, res) => {
     query: req.query,
     body: req.body,
   });
-
-  writeFileSync(file, counter, encode);
 });
 
 const port = process.env.PORT || 3000;
