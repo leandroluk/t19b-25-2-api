@@ -1,12 +1,14 @@
 const express = require('express');
+const path = require('path');
 const { readFileSync, writeFileSync } = require('fs');
 
 const app = express();
 
 app.get('*', (req, res) => {
-  const file = './counter.txt';
+  const file = path.resolve(__dirname, 'counter.txt');
   const encode = 'utf-8';
-  const counter = Number(readFileSync(file, encode)) + 1;
+  const fileContent = readFileSync(file, encode);
+  const counter = Number(fileContent || 0) + 1;
 
   res.json({
     counter,
